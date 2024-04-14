@@ -159,7 +159,8 @@ export const productImage3DController = async (req, res) => {
         if (!products.image3D.path) {
             return res.status(500).json({ error: "Path to 3D model is undefined" });
         }
-        const absolutePath = path.resolve(products.image3D.path);
+
+        const absolutePath = path.resolve(products.image3D.path.replace(/\\/g, '/'));
 
         // Đặt loại nội dung của phản hồi
         res.set('Content-Type', 'model/gltf-binary');
